@@ -11,17 +11,16 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 ---
 ### 🗝️ Key Features
 1. **Zephyr RTOS-Based Embedded Architecture**   
-`Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`
+`Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`  
 - Built on Zephyr RTOS running on STM32 microcontrollers
 - Leverages Zephyr's kernel primitives for threading, synchronization, and timing
 - Designed for deterministic execution and portability across supported boards
 - Zephyr RTOS in STM32 Setup Guide: [STM32 + Zephyr + VSCode](link)  
-`Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`
-2. **Object-Oriented Machine & Sensor Modeling**
+2. **Object-Oriented Machine & Sensor Modeling**  
+`C / C++` · `OOP` · `Design Patterns` · `Factory Method` · `C/C++ Interoperability`  
 - Uses Object-Oriented Design to model Machines and Sensors, enabling polymorphic access to different sensor types
 - Implements the Factory Method Pattern to dynamically create sensors at runtime based on type identifiers
 - Combines C++ core logic with C-compatible wrapper APIs, allowing seamless integration with Zephyr's C-based ecosystem  
-`C / C++` · `OOP` · `Design Patterns` · `Factory Method` · `C/C++ Interoperability`
 3. **Multithreaded Data Pipeline**
 - Multiple worker threads perform independent tasks including sensor updates, data collection, and anomaly detection
 - Threads emit structured log events to a shared message queue
