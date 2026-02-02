@@ -10,7 +10,8 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 - Complete API and module documentation is automatically generated using [**Doxygen Documentaion**]().
 ---
 ### 🗝️ Key Features
-1. **Zephyr RTOS-Based Embedded Architecture**  
+1. **Zephyr RTOS-Based Embedded Architecture**   
+`Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`
 - Built on Zephyr RTOS running on STM32 microcontrollers
 - Leverages Zephyr's kernel primitives for threading, synchronization, and timing
 - Designed for deterministic execution and portability across supported boards
@@ -40,27 +41,27 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
    Values      (5 Threads)      Buffer      Analysis        Output
 ```
 ### 🧶 Threading Model
-The system uses 5 concurrent threads with different priorities to implement a staged data processing pipeline:  
-Thread 1: `sensor_data_writer`  `Priority = 7`  
+The system uses 5 concurrent threads with different priorities to implement a staged data processing pipeline:   
+1. Thread 1: `sensor_data_writer`  `Priority = 7`  
 - Generates simulated sensor values within realistic operating ranges
 - Writes values into sensor objects via the Factory Pattern interface
 - Emits log events describing written values
-Thread 2: `data_collector`  `Priority = 6`  
+2. Thread 2: `data_collector`  `Priority = 6`  
 - Reads sensor data from sensor objects
 - Writes collected data into a circular buffer for time-series analysis
 - Emits log events to verify data flow correctness
-Thread 3: `anomaly_detector`  `Priority = 5`  
+3. Thread 3: `anomaly_detector`  `Priority = 5`  
 - Consumes data from the circular buffer
 - Performs statistical anomaly detection (range checking, threshold comparison)
 - Emits log events describing detection results (normal/anomaly)
 - Signal `anomaly_handler` via semaphore when an anomaly is detected
-Thread 4: `anomaly_handler`  `Priority = 4`  
+4. Thread 4: `anomaly_handler`  `Priority = 4`  
 - Sleeps until signaled by `anomaly_detector`
 - When activated:
   - Dumps circular buffer contents to terminal
   - Logs anomaly details with timestamp
   - Emits alert messages
-Thread 5: `system_logger`  `Priority = 3`. 
+5. Thread 5: `system_logger`  `Priority = 3`. 
 - Sole owner of terminal output — prevents race conditions
 - Consumes structured log messages from a thread-safe queue
 - Prints logs in a serialized manner with thread identification tags
@@ -74,12 +75,12 @@ Thread 5: `system_logger`  `Priority = 3`.
   [Thread 4] Buffer dump: [72.1, 73.5, 74.8, 78.2, 85.4, 90.1, 95.7]
   ```
 ### Synchronization Mechanisms
-|   Mechanism   |   Purpose     |   Protected Resource   |
-|-----------|-----------|-----------|----------|
-|  Mutex  |  Protect sensor object access    |    Thread 1 (write) vs Thread 2 (read)    |
-|  Mutex  |   Protect circular buffer   |    Thread 2 (write) vsThread 3/4 (read)    |
-|  Semaphore  |   Signal anomaly detection     |    Thread 3 -> Thread 4    |
-|  Message Queue  |   Centralized logging   |    All thread -> Thread 5   |
+| Mechanism | Purpose | Protected Resource |
+|-----------|---------|-------------------|
+| **Mutex** | Protect sensor object access | Thread 1 (write) vs Thread 2 (read) |
+| **Mutex** | Protect circular buffer | Thread 2 (write) vs Threads 3/4 (read) |
+| **Semaphore** | Signal anomaly detection | Thread 3 → Thread 4 |
+| **Message Queue** | Centralized logging | All threads → Thread 5 |
 ### ⚙️ Machine-Sensor Configuration
 Each industrial machine is equipped with specific sensors for predictive maintenance: 
 
