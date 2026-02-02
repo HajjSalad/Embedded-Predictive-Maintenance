@@ -10,17 +10,17 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 - Complete API and module documentation is automatically generated using [**Doxygen Documentaion**]().
 ---
 ### 🗝️ Key Features
-1. **Zephyr RTOS-Based Embedded Architecture**   
-`Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`  
+1. **Zephyr RTOS-Based Embedded Architecture**    
 - Built on Zephyr RTOS running on STM32 microcontrollers
 - Leverages Zephyr's kernel primitives for threading, synchronization, and timing
 - Designed for deterministic execution and portability across supported boards
-- Zephyr RTOS in STM32 Setup Guide: [STM32 + Zephyr + VSCode](link)  
-2. **Object-Oriented Machine & Sensor Modeling**  
-`C / C++` · `OOP` · `Design Patterns` · `Factory Method` · `C/C++ Interoperability`  
+- Zephyr RTOS in STM32 Setup Guide: [STM32 + Zephyr + VSCode](link)   
+`Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`  
+2. **Object-Oriented Machine & Sensor Modeling**   
 - Uses Object-Oriented Design to model Machines and Sensors, enabling polymorphic access to different sensor types
 - Implements the Factory Method Pattern to dynamically create sensors at runtime based on type identifiers
 - Combines C++ core logic with C-compatible wrapper APIs, allowing seamless integration with Zephyr's C-based ecosystem  
+`C / C++` · `OOP` · `Design Patterns` · `Factory Method` · `C/C++ Interoperability` 
 3. **Multithreaded Data Pipeline**
 - Multiple worker threads perform independent tasks including sensor updates, data collection, and anomaly detection
 - Threads emit structured log events to a shared message queue
@@ -73,14 +73,14 @@ The system uses 5 concurrent threads with different priorities to implement a st
   [Thread 4] ⚠️⚠️⚠️ ANOMALY ALERT ⚠️⚠️⚠️
   [Thread 4] Buffer dump: [72.1, 73.5, 74.8, 78.2, 85.4, 90.1, 95.7]
   ```
-### Synchronization Mechanisms
+### ⛓ Synchronization Mechanisms
 | Mechanism | Purpose | Protected Resource |
 |-----------|---------|-------------------|
 | **Mutex** | Protect sensor object access | Thread 1 (write) vs Thread 2 (read) |
 | **Mutex** | Protect circular buffer | Thread 2 (write) vs Threads 3/4 (read) |
 | **Semaphore** | Signal anomaly detection | Thread 3 → Thread 4 |
 | **Message Queue** | Centralized logging | All threads → Thread 5 |
-### ⚙️ Machine-Sensor Configuration
+### 🛠️ Machine-Sensor Configuration
 Each industrial machine is equipped with specific sensors for predictive maintenance: 
 
 1. Air Compressor (`AIR_COMPRESSOR`)
