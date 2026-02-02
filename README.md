@@ -10,26 +10,26 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 - Complete API and module documentation is automatically generated using [**Doxygen Documentaion**]().
 ---
 ### 🗝️ Key Features
-1. **Zephyr RTOS-Based Embedded Architecture**
+1. **Zephyr RTOS-Based Embedded Architecture**  
 - Built on Zephyr RTOS running on STM32 microcontrollers
 - Leverages Zephyr's kernel primitives for threading, synchronization, and timing
 - Designed for deterministic execution and portability across supported boards
-  - Setup Guide: [STM32 + Zephyr + VSCode](link)
+- Zephyr RTOS in STM32 Setup Guide: [STM32 + Zephyr + VSCode](link)  
 `Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`
 2. **Object-Oriented Machine & Sensor Modeling**
 - Uses Object-Oriented Design to model Machines and Sensors, enabling polymorphic access to different sensor types
 - Implements the Factory Method Pattern to dynamically create sensors at runtime based on type identifiers
-- Combines C++ core logic with C-compatible wrapper APIs, allowing seamless integration with Zephyr's C-based ecosystem
+- Combines C++ core logic with C-compatible wrapper APIs, allowing seamless integration with Zephyr's C-based ecosystem  
 `C / C++` · `OOP` · `Design Patterns` · `Factory Method` · `C/C++ Interoperability`
 3. **Multithreaded Data Pipeline**
 - Multiple worker threads perform independent tasks including sensor updates, data collection, and anomaly detection
 - Threads emit structured log events to a shared message queue
-- A dedicated logger thread serializes and prints all output, preventing race conditions on the terminal
+- A dedicated logger thread serializes and prints all output, preventing race conditions on the terminal  
 `Multithreading` · `Producer–Consumer Pattern` · `Message Queues` · `Thread Synchronization`
 4. **On-Device Anomaly Detection**
 - Sensor readings are continuously compared against defined normal operating ranges
 - Statistical detection logic identifies deviations indicating abnormal behavior
-- Anomaly handling is event-driven, minimizing unnecessary CPU usage
+- Anomaly handling is event-driven, minimizing unnecessary CPU usage  
 `Anomaly Detection` · `Edge Computing` · `Predictive Maintenance` · `Statistical Analysis`
 ---
 ### 🏗 System Architecture
