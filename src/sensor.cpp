@@ -63,7 +63,7 @@ std::unique_ptr<Sensor> SensorFactory::createSensor(const std::string& type)
  * @brief Construct a machine with a set of sensors
  * 
  * Sensors are created dynamically at runtime using the SensorFactory based on 
- * the provided sensor tpe list.
+ * the provided sensor type list.
  * 
  * @param machineName Human-readable machine name
  * @param sensorTypes List of sensor type identifiers

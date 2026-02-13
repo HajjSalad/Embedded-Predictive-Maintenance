@@ -10,7 +10,7 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(edge_pm)
 
 # Specify the application source files (PRIVATE: means sources only used by this target)
-target_sources(app PRIVATE src/main.c src/demo.cpp)
+target_sources(app PRIVATE src/main.c src/demo.cpp src/machines.c src/sensor.cpp src/sensor_wrapper.cpp src/threads.c)
 
 # Include directories
 target_include_directories(app PRIVATE include)

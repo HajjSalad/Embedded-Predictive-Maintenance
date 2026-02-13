@@ -48,7 +48,7 @@ typedef struct {
 
 /**
  * @typedef MachineHandle
- * @brief Opaque handle to a mcahine instance.
+ * @brief Opaque handle to machine instance.
  * 
  * Represents an internal C++ Machine object without exposing its 
  * implementation details to C code.

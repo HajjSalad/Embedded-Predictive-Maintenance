@@ -7,7 +7,8 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 - This README provides a high-level overview of the project's goals, architecture, and core features.  
 - Detailed development notes, design decisions, and implementation reasoning are documented in [**Notion Workspace**](https://hajjsalad.notion.site/Data-Logger-and-Detection-1c3a741b5aab8008b104dcbf9cf744c8)
 - Feature-specific explanations and deep technical breakdowns are linked directly within the relevant sections below.
-- Complete API and module documentation is automatically generated using [**Doxygen Documentaion**]().
+- Complete API and module documentation is automatically generated using **Doxygen Documentaion**.
+  - The generated documentation is hosted on [GitHub Pages]()
 ---
 ### 🗝️ Key Features
 1. **Zephyr RTOS-Based Embedded Architecture**    
@@ -31,6 +32,10 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 - Statistical detection logic identifies deviations indicating abnormal behavior
 - Anomaly handling is event-driven, minimizing unnecessary CPU usage  
 `Anomaly Detection` · `Edge Computing` · `Predictive Maintenance` · `Statistical Analysis`
+5. **Doxygen Documentation**   
+- Fully documented using Doxygen with clear function, module, and data structure description.
+- Generate browsable HTML documentation published via GitHub Pages from the `docs/` directory.  
+`Documentation` · `Maintainability` · `Code Quality`
 ---
 ### 🏗 System Architecture
 ```
