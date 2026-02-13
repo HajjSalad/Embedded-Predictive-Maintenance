@@ -5,7 +5,7 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 
 #### 💡 Documentation Guide
 - This README provides a high-level overview of the project's goals, architecture, and core features.  
-- Detailed development notes, design decisions, and implementation reasoning are documented in [**Notion Workspace**](https://hajjsalad.notion.site/Data-Logger-and-Detection-1c3a741b5aab8008b104dcbf9cf744c8)
+- Detailed development notes, design decisions, and implementation reasoning are documented in [**Notion Workspace**](https://hajjsalad.notion.site/Data-Logger-and-Detection-302a741b5aab80858ebef06b9e90e83a?pvs=25)
 - Feature-specific explanations and deep technical breakdowns are linked directly within the relevant sections below.
 - Complete API and module documentation is automatically generated using **Doxygen Documentaion**.
   - The generated documentation is hosted on [GitHub Pages]()
@@ -15,7 +15,7 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 - Built on Zephyr RTOS running on STM32 microcontrollers
 - Leverages Zephyr's kernel primitives for threading, synchronization, and timing
 - Designed for deterministic execution and portability across supported boards
-- Zephyr RTOS in STM32 Setup Guide: [STM32 + Zephyr + VSCode](link)   
+- Zephyr RTOS in STM32 Setup Guide: [STM32 + Zephyr + VSCode](https://www.notion.so/hajjsalad/Data-Logger-and-Detection-302a741b5aab80858ebef06b9e90e83a?source=copy_link#306a741b5aab80f1afcac50dd447c797)   
 `Zephyr RTOS` · `STM32` · `Embedded Systems` · `Real-Time Operating Systems`  
 2. **Object-Oriented Machine & Sensor Modeling**   
 - Uses Object-Oriented Design to model Machines and Sensors, enabling polymorphic access to different sensor types
