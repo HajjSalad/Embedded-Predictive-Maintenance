@@ -46,11 +46,11 @@ It simulates industrial machines equipped with multiple sensors, logs sensor dat
 ```
 ### 🧶 Threading Model
 The system uses 5 concurrent threads with different priorities to implement a staged data processing pipeline:   
-1. Thread 1: `sensor_data_writer`  `Priority = 7`  
+1. Thread 1: `sensor_data_writer`  `Priority = 3`  
 - Generates simulated sensor values within realistic operating ranges
 - Writes values into sensor objects via the Factory Pattern interface
 - Emits log events describing written values
-2. Thread 2: `data_collector`  `Priority = 6`  
+2. Thread 2: `data_collector`  `Priority = 4`  
 - Reads sensor data from sensor objects
 - Writes collected data into a circular buffer for time-series analysis
 - Emits log events to verify data flow correctness
@@ -59,13 +59,13 @@ The system uses 5 concurrent threads with different priorities to implement a st
 - Performs statistical anomaly detection (range checking, threshold comparison)
 - Emits log events describing detection results (normal/anomaly)
 - Signal `anomaly_handler` via semaphore when an anomaly is detected
-4. Thread 4: `anomaly_handler`  `Priority = 4`  
+4. Thread 4: `anomaly_handler`  `Priority = 6`  
 - Sleeps until signaled by `anomaly_detector`
 - When activated:
   - Dumps circular buffer contents to terminal
   - Logs anomaly details with timestamp
   - Emits alert messages
-5. Thread 5: `system_logger`  `Priority = 3`. 
+5. Thread 5: `system_logger`  `Priority = 7`. 
 - Sole owner of terminal output — prevents race conditions
 - Consumes structured log messages from a thread-safe queue
 - Prints logs in a serialized manner with thread identification tags
