@@ -10,10 +10,22 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(edge_pm)
 
 # Specify the application source files (PRIVATE: means sources only used by this target)
-target_sources(app PRIVATE src/main.c src/demo.cpp src/machines.c src/sensor.cpp src/sensor_wrapper.cpp src/threads.c)
+# Apparently GLOB CMake won't automatically re-run if you add a new file, you have to manually re-run cmake once
+target_sources(app PRIVATE 
+    src/main.c 
+    src/utils/demo.cpp 
+    src/machines/sensor.cpp 
+    src/machines/wrapper.cpp 
+    src/threads/thread_sensor_read.c 
+    src/threads/thread_sensor_write.c 
+    src/threads/thread_anomaly_detect.c 
+    src/threads/thread_anomaly_handle.c 
+    src/threads/thread_system_logger.c 
+    src/core/detection.c
+    src/core/circular_buffer.c)
 
 # Include directories
-target_include_directories(app PRIVATE include)
+target_include_directories(app PRIVATE include include/core include/machines include/threads include/utils)
 
 # Enable C++ support
 set(Zephyr_EXTRA_MODULES app)
