@@ -100,33 +100,34 @@ Each industrial machine is equipped with specific sensors for predictive mainten
 - Temperature: `60-105°C`      
 - _Winding insulation safety range_  
 ---
-### 📂 Project Code Structure
+#### 📂 Project Code Structure
 ```
-📁 edge_pm/
-│
-├── 📁 src/                           Core application source files
-│   ├── 📄 main.c                     Zephyr application entry point & initialization
-│   ├── 📄 demo.cpp                   C++/C interop demonstration module
-│   ├── 📄 sensor.cpp                 Sensor class implementations (C++)
-│   ├── 📄 sensor_wrapper.c           C wrapper API for sensor objects
-│   ├── 📄 machines.c                 Machine generation and configuration
-│   ├── 📄 threads.c                  Thread definitions and lifecycle management
-│   ├── 📄 queue.c                    Message queue for centralized logging
-│   ├── 📄 circular_buffer.c          Ring buffer for time-series sensor data
-│   └── 📄 detection.c                Anomaly detection logic
-│
-├── 📁 include/                       Public header files
-│   ├── 📄 demo.h                     Demo module interface
-│   ├── 📄 sensor.h                   Sensor class declarations and public interface
-│   ├── 📄 sensor_wrapper.h           C-compatible sensor API
-│   ├── 📄 machines.h                 Machine configuration and management
-│   ├── 📄 threads.h                  Thread function prototypes
-│   ├── 📄 queue.h                    Logging queue interface
-│   ├── 📄 circular_buffer.h          Circular buffer interface
-│   └── 📄 detection.h                Anomaly detection interface
-│
-├── 📄 CMakeLists.txt                 Build configuration
-├── 📄 prj.conf                       Zephyr kernel and module configuration
-├── 📄 Doxyfile                       Doxygen documentation generation config
-└── 📄 README.md                      Project overview and documentation
+├── 📁 edge_pm/                               # Edge PM Zephyr Application
+│   ├── 📁 src/                               # Core application source files
+│   │   ├── 📄 main.c                         # Zephyr application entry point & initialization
+│   │   ├── 📁 core/                          # Core utilities and algorithms
+│   │   │   ├── 📄 circular_buffer.c          # Ring buffer for time-series sensor data
+│   │   │   └── 📄 detection.c                # Anomaly detection logic
+│   │   ├── 📁 machines/                      # Machine and device logic
+│   │   │   ├── 📄 sensor.cpp                 # Sensor class implementations (C++)
+│   │   │   └── 📄 wrapper.cpp                # C wrapper API for sensor objects
+│   │   ├── 📁 threads/                       # Zephyr threads
+│   │   │   ├── 📄 thread_anomaly_detect.c    # Anomaly detection thread
+│   │   │   ├── 📄 thread_anomaly_handle.c    # Thread to handle anomaly events
+│   │   │   ├── 📄 thread_sensor_read.c       # Sensor read thread
+│   │   │   ├── 📄 thread_sensor_write.c      # Sensor write thread
+│   │   │   └── 📄 thread_system_logger.c     # Centralized logging thread
+│   │   └── 📁 utils/                         # Utility modules
+│   │       └── 📄 demo.cpp                   # Demo/C++ interop examples
+│   │
+│   ├── 📁 include/                            # Public headers
+│   │   ├── 📁 core/                           # Core headers
+│   │   ├── 📁 machines/                       # Machine headers
+│   │   ├── 📁 threads/                        # Thread headers
+│   │   └── 📁 utils/                          # Utility headers
+│   │
+│   ├── 📄 CMakeLists.txt                        # Build configuration
+│   ├── 📄 prj.conf                              # Zephyr kernel and module configuration
+│   ├── 📄 Doxyfile                              # Doxygen documentation configuration
+│   └── 📄 README.md                             # Project overview and documentation
 ```
