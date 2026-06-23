@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
+
 # Specify the minimum required CMake version
 cmake_minimum_required(VERSION 3.20.0)
 
@@ -27,5 +28,5 @@ target_sources(app PRIVATE
 # Include directories
 target_include_directories(app PRIVATE include include/core include/machines include/threads include/utils)
 
-# Enable C++ support
+# Enable C++ support 
 set(Zephyr_EXTRA_MODULES app)

@@ -3,3 +3,6 @@
 
 # Ignore editor / System files
 .DS_Store
+
+# Project files
+prj.conf
