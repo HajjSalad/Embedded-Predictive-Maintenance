@@ -21,7 +21,8 @@
 */
 void anomaly_detect(void)
 {
-    while (1) {
+    while (1) 
+    {
         log_msg_t msg = {.thread_id = 3, .message = "Reading circular buffer:"};
         k_msgq_put(&log_queue, &msg, K_NO_WAIT);
 
@@ -38,7 +39,7 @@ void anomaly_detect(void)
             
             // Log the reading to verify data is corretcly carried from Thread 2
             char buf[LOG_MSG_SIZE];
-            snprintf(buf, sizeof(buf), "  %-15s | %-12s = %6.2f [%.2f-%.2f]",
+            snprintf(buf, sizeof(buf), "  %-25s | %-12s = %6.2f [%.2f-%.2f]",
                 reading.machine_name, reading.sensor_type,
                 (double)reading.value,
                 (double)reading.min_value,
@@ -46,9 +47,7 @@ void anomaly_detect(void)
 
             log_msg_t sensor_msg = {.thread_id = 3};
             strncpy(sensor_msg.message, buf, LOG_MSG_SIZE - 1);
-            k_msgq_put(&log_queue, &sensor_msg, K_NO_WAIT);
-
-            
+            k_msgq_put(&log_queue, &sensor_msg, K_NO_WAIT);  
         }
 
         k_msleep(THREAD_ANOMALY_DETECT_PERIOD_MS);

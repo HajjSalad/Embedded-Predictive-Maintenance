@@ -6,6 +6,8 @@
  * threads written in C) to interact with C++ Machine and Sensor objects.
 */
 
+#include <zephyr/kernel.h>
+
 #include "wrapper.h"
 #include "sensor.h"
 
@@ -13,17 +15,21 @@ extern Machine machinePool[NUM_MACHINES];
 
 extern "C" void generate_machines_and_sensors(void) 
 {
+    //printk("Starting machine generation...\n");
+    
     // Air Compressor: Temperature (60-100°C), Pressure (72-145 psi), Vibration (0.5-2.0 mm/s)
-    machinePool[0].addSensor(SensorFactory::createSensor("Temperature", 0,  60,  100));
-    machinePool[0].addSensor(SensorFactory::createSensor("Pressure",    1,  72,  145));
-    machinePool[0].addSensor(SensorFactory::createSensor("Vibration",   2, 0.5,  2.0));
+    machinePool[0].addSensor(SensorFactory::createSensor("Temperature", 0,  60.0f,  100.0f));
+    machinePool[0].addSensor(SensorFactory::createSensor("Pressure",    1,  72.0f,  145.0f));
+    machinePool[0].addSensor(SensorFactory::createSensor("Vibration",   2,   0.5f,    2.0f));
 
     // Steam Boiler: Temperature (150-250°C), Pressure (87-360 psi)
-    machinePool[1].addSensor(SensorFactory::createSensor("Temperature", 3, 150,  250));
-    machinePool[1].addSensor(SensorFactory::createSensor("Pressure",    4,  87,  360));
+    machinePool[1].addSensor(SensorFactory::createSensor("Temperature", 3, 150.0f,  250.0f));
+    machinePool[1].addSensor(SensorFactory::createSensor("Pressure",    4,  87.0f,  360.0f));
 
     // Electric Motor: Temperature (60-105°C)
-    machinePool[2].addSensor(SensorFactory::createSensor("Temperature", 5,  60,  105));
+    machinePool[2].addSensor(SensorFactory::createSensor("Temperature", 5,  60.0f,  105.0f));
+
+    //printk("Machines and sensors generated\n");
 }
 
 extern "C" MachineHandle get_machine(uint8_t index) 
@@ -43,13 +49,13 @@ extern "C" const char* get_machine_name(MachineHandle machine)
     return m->getName();
 }
 
-extern "C" MachineType* get_machine_type(MachineHandle machine)
+extern "C" MachineType get_machine_type(MachineHandle machine)
 {
     if (machine == nullptr) {
-        return;
+        return AIR_COMPRESSOR;
     }
     Machine* m = reinterpret_cast<Machine*>(machine);
-    m->getType();
+    return m->getType();
 }
 
 extern "C" void set_sensor_value(MachineHandle machine, const char* sensorType, float value)

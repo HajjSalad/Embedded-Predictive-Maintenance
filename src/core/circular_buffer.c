@@ -48,7 +48,7 @@ void cb_write(CircularBuffer *cb, const struct sensor_reading *reading)
         return;
     }
 
-    // Copy the sensor reading into he buffer at current write position
+    // Copy the sensor reading into the buffer at current write position
     (void)memcpy(&cb->entries[cb->head], reading, sizeof(struct sensor_reading));
 
     // Advance head index (wrap around at BUFFER_SIZE)

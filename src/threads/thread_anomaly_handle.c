@@ -24,6 +24,6 @@ void anomaly_handle(void)
     while (1) {
         log_msg_t msg = {.thread_id = 4, .message = "In thread 4"};
         k_msgq_put(&log_queue, &msg, K_NO_WAIT);
-        k_msleep(5000);
+        k_msleep(THREAD_ANOMALY_HANDLE_PERIOD_MS);
     }
 }

@@ -8,8 +8,8 @@
 
 #include <zephyr/kernel.h>
 
-#define LOG_MSG_SIZE                64
-#define LOG_QUEUE_SIZE              16
+#define LOG_MSG_SIZE                128
+#define LOG_QUEUE_SIZE              32
 
 /** @brief Memory alignment for the message queue buffer in bytes */
 #define MESSAGE_ALIGN               4
@@ -39,7 +39,7 @@ typedef struct {
  * through the circular buffer from Thread 2 to Thread 3.
 */
 struct sensor_reading { 
-    char machine_name[16];      /**< Name of the machine this reading belongs to */
+    char machine_name[30];      /**< Name of the machine this reading belongs to */
     char sensor_type[16];       /**< Name of the sensor that produced the reading */
     float value;                /**< Recorded sensor value */
     float min_value;            /**< Minimum value of the sensor's valid operating range */

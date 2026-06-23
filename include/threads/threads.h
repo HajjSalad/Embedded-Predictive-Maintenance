@@ -6,9 +6,10 @@
  * @brief 
 */
 
-#define THREAD_SENSOR_WRITE_PERIOD_MS       (5000U)
-#define THREAD_SENSOR_READ_PERIOD_MS        (5000U)
-#define THREAD_ANOMALY_DETECT_PERIOD_MS     (5000U)
+#define THREAD_SENSOR_WRITE_PERIOD_MS       (30000U)
+#define THREAD_SENSOR_READ_PERIOD_MS        (30000U)
+#define THREAD_ANOMALY_DETECT_PERIOD_MS     (30000U)
+#define THREAD_ANOMALY_HANDLE_PERIOD_MS     (30000U)
 
 // Function Prototypes
 void sensor_write(void);

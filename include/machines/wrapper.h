@@ -35,7 +35,7 @@ void generate_machines_and_sensors(void);
 // Machine access
 MachineHandle get_machine(uint8_t index);
 const char* get_machine_name(MachineHandle machine);
-MachineType* get_machine_type(MachineHandle machine);
+MachineType get_machine_type(MachineHandle machine);
 uint8_t get_sensor_count(MachineHandle machine);
 
 // Sensor Operations

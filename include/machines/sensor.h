@@ -5,7 +5,6 @@
  * @file sensor.h
  * @brief 
  * 
-
 */
 
 #include <stdint.h>
@@ -42,6 +41,7 @@ public:
 // Temperature sensor
 class TempSensor : public Sensor {
 public:
+    TempSensor() : Sensor(0, 0.0f, 0.0f) {}
     explicit TempSensor(uint16_t number, float min, float max) 
         : Sensor(number, min, max) {}
     float readValue() override { return sensorValue; }                  // Provide own implementation
@@ -51,6 +51,7 @@ public:
 // Pressure sensor
 class PressureSensor : public Sensor {
 public:
+    PressureSensor() : Sensor(0, 0.0f, 0.0f) {}
     explicit PressureSensor(uint16_t number, float min, float max) 
         : Sensor(number, min, max) {}
     float readValue() override { return sensorValue; }
@@ -60,6 +61,7 @@ public:
 // Vibration sensor
 class VibrationSensor : public Sensor {
 public:
+    VibrationSensor() : Sensor(0, 0.0f, 0.0f) {}
     explicit VibrationSensor(uint16_t number, float min, float max)
         : Sensor(number, min, max) {}
     float readValue() override { return sensorValue; }

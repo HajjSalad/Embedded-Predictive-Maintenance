@@ -1,5 +1,5 @@
 /**
- * @file thread_sensor_write.c
+ * @file  thread_sensor_write.c
  * @brief
  * 
  * Description
@@ -16,7 +16,7 @@
 #include "circular_buffer.h"
 
 /**
- * @brief Thread 1: Write simulated sensor values into sensor objects
+ * @brief Thread 1: Write sensor values into sensor objects
  * 
  * Iterates through all machines and their sensors, generates a random value
  * within each sensor's configured range, and writes it via the C++ wrapper.
@@ -28,13 +28,15 @@
 */
 void sensor_write(void) 
 {
+    static char buf[LOG_MSG_SIZE];
+
     while (1) 
     {
         log_msg_t msg = {.thread_id = 1, .message = "Setting sensor values:"};
         k_msgq_put(&log_queue, &msg, K_NO_WAIT);
 
         // Iterate through each machine and set all sensor values
-        for (u_int8_t i=0U; i<NUM_MACHINES; i++) 
+        for (uint8_t i=0U; i<NUM_MACHINES; i++) 
         {
             // Get machine handle
             MachineHandle machine = get_machine(i);
@@ -62,11 +64,10 @@ void sensor_write(void)
                 // Acquire mutex & Set the sensor value
                 (void)k_mutex_lock(&sensor_mutex, K_FOREVER);
                 set_sensor_value(machine, sensorType, value);
-                (void)k_mutex_unlock(&sensor_mutex)
+                (void)k_mutex_unlock(&sensor_mutex);
 
                 // Log the operation
-                static char buf[LOG_MSG_SIZE];
-                snprintf(buf, sizeof(buf), "  %-15s | %-12s = %6.2f [%.2f-%.2f]",
+                snprintf(buf, sizeof(buf), "  %-25s | %-12s = %6.2f [%.2f-%.2f]",
                     machineName, sensorType,
                     (double)value,
                     (double)minVal,

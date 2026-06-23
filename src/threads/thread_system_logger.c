@@ -23,7 +23,9 @@ void system_log(void)
 {
     log_msg_t msg;
 
-    while (1) {
+    while (1) 
+    {
+        // Block wait for item on the message queue
         k_msgq_get(&log_queue, &msg, K_FOREVER);
         printk("Thread %d: %s\n", msg.thread_id, msg.message);
     }

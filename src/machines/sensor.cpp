@@ -23,7 +23,7 @@ static uint8_t pressIndex = 0U;
 static uint8_t vibIndex   = 0U;
 
 // Static Machine Pool
-static Machine machinePool[NUM_MACHINES] = {
+Machine machinePool[NUM_MACHINES] = {
     Machine("Station_A_Air_Compressor", AIR_COMPRESSOR),
     Machine("Station_A_Steam_Boiler", STEAM_BOILER),
     Machine("Station_A_Electric_Motor", ELECTRIC_MOTOR)
@@ -133,7 +133,7 @@ float Machine::getSensorMaxValue(const char* sensorType) const
     return 0.0f;    // Sensor not found
 }
 
-const char* Machine::getSensorType(u_int8_t sensorIndex) const
+const char* Machine::getSensorType(uint8_t sensorIndex) const
 {
     if (sensorIndex >= sensorCount || sensors[sensorIndex] == nullptr) {
         return "unknown";

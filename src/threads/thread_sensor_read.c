@@ -28,10 +28,10 @@
  * @note Runs every 5000ms
 */
 void sensor_read(void)
-{
+{    
     while (1) 
     {
-        log_msg_t msg = {.thread_id = 1, .message = "Getting sensor values:"};
+        log_msg_t msg = {.thread_id = 2, .message = "Getting sensor values:"};
         k_msgq_put(&log_queue, &msg, K_NO_WAIT);
 
         // Iterate through each machine and set all sensor values
@@ -63,14 +63,14 @@ void sensor_read(void)
 
                 // Format the sensor readings for circular buffer 
                 struct sensor_reading reading = {
-                    .machine_name = machineName,
-                    .sensor_type = sensorType,
+                   // .machine_name = machineName,
+                   // .sensor_type = sensorType,
                     .value = value,
                     .min_value = minVal,
                     .max_value = maxVal
                 };
                 strncpy(reading.machine_name, machineName, sizeof(reading.machine_name) - 1);
-                strncpy(reading.sensor_name, sensorType, sizeof(reading.sensor_name) - 1);
+                strncpy(reading.sensor_type, sensorType, sizeof(reading.sensor_type) - 1);
 
                 // Acquire mutex and write to circular buffer
                 (void)k_mutex_lock(&buffer_mutex, K_FOREVER);
@@ -79,13 +79,13 @@ void sensor_read(void)
 
                 // Log the operation
                 static char buf[LOG_MSG_SIZE];
-                snprintf(buf, sizeof(buf), "  %-15s | %-12s = %6.2f [%.2f-%.2f]",
+                snprintf(buf, sizeof(buf), "  %-25s | %-12s = %6.2f [%.2f-%.2f]",
                     machineName, sensorType,
                     (double)value,
                     (double)minVal,
                     (double)maxVal);
 
-                log_msg_t sensor_msg = {.thread_id = 1};
+                log_msg_t sensor_msg = {.thread_id = 2};
                 strncpy(sensor_msg.message, buf, LOG_MSG_SIZE - 1);
                 (void)k_msgq_put(&log_queue, &sensor_msg, K_NO_WAIT);
             }
